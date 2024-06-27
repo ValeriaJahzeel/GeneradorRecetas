@@ -3,7 +3,7 @@ import { HfInference } from "@huggingface/inference";
 const apiKey: string = "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";
 const hf: HfInference = new HfInference(apiKey);
 
-const imageURL: string = "https://imgmedia.buenazo.pe/650x358/buenazo/original/2022/02/01/61f971e90de24b35ca157a99.jpg";
+const imageURL: string = "https://antiagingsshop.com/wp-content/uploads/2016/05/brocoli.jpg";
 
 const model: string = "jazzmacedo/fruits-and-vegetables-detector-36";
 
