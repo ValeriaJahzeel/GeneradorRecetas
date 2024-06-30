@@ -1,5 +1,4 @@
 import { HfInference } from "@huggingface/inference";
-import fetch from "node-fetch";
 import fs from "fs";
 import { Blob } from "fetch-blob";
 

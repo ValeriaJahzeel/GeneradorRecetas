@@ -4,7 +4,7 @@
   "main": "expo/AppEntry.js",
   "type": "module",
   "scripts": {
-    "start": "babel-node src/index.ts",
+    "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"

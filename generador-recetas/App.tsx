@@ -1,40 +1,37 @@
 import { HfInference } from "@huggingface/inference";
-import { promises as fs } from 'fs';
-import { Blob } from 'node:buffer';
+import fs from "fs";
+import { Blob } from "buffer"; 
 
-const apiKey: string = "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";
-const hf: HfInference = new HfInference(apiKey);
+const hf = new HfInference("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");
 
-const imagePath: string = "img/aaa.jpg"; // Cambia esto por la ruta a tu imagen local
-const model: string = "jazzmacedo/fruits-and-vegetables-detector-36";
+const imageURL = "salida/121.jpg"; 
 
-// Define el tipo de resultado esperado
-interface ClassificationResult {
-  label: string;
-  score: number;
+async function getImageBlob(imagePath: fs.PathOrFileDescriptor) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(imagePath, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(new Blob([data]));
+      }
+    });
+  });
 }
 
-const fetchImage = async (path: string): Promise<Blob> => {
+async function classifyImage() {
   try {
-    const imageBuffer: Buffer = await fs.readFile(path);
-    return new Blob([imageBuffer], { type: 'image/jpeg' }); // Asegúrate de especificar el tipo MIME correcto
-  } catch (error) {
-    console.error('Error al leer la imagen:', error);
-    throw error;
-  }
-};
-
-const classifyImage = async (blob: Blob, model: string): Promise<ClassificationResult[]> => {
-  try {
-    const result: ClassificationResult[] = await hf.imageClassification({
+    const blob = await getImageBlob(imageURL);
+    const model = "jazzmacedo/fruits-and-vegetables-detector-36";
+    
+    const result = await hf.imageClassification({
       data: blob,
-      model: model
+      model: model,
     });
 
     console.log(result);
   } catch (error) {
     console.error("Error:", error);
   }
-};
+}
 
-main();
+classifyImage();
