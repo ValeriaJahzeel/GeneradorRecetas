@@ -30,17 +30,7 @@ const classifyImage = async (blob: Blob, model: string): Promise<ClassificationR
       data: blob,
       model: model
     });
-    return result;
-  } catch (error) {
-    console.error('Error al clasificar la imagen:', error);
-    throw error;
-  }
-};
 
-const main = async (): Promise<void> => {
-  try {
-    const imageBlob: Blob = await fetchImage(imagePath);
-    const result = await classifyImage(imageBlob, model);
     console.log(result);
   } catch (error) {
     console.error("Error:", error);
