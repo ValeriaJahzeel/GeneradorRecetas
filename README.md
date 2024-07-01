@@ -10,6 +10,6 @@ tiene un alcance limitado en cuanto a las frutas y verduras que puede detectar.
 Utiliza una API de fastAPI que permite recortar los objetos de la imagen de entrada en 
 y de esta manera pasarlos al modelo. Para ejecutarlo debes tener instalado uvicorn y fastAPI, 
 luego, desde la terminal escribe
-uvicorn segmentacion:app --reload
+uvicorn segmentacion:app --host 0.0.0.0 --port 8000 --reload
 
 Para ejecutar la app de react native, dirigete a la carpeta del proyecto y ejecuta npx expo start
